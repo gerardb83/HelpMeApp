@@ -26,7 +26,6 @@ import co.grandcircus.HelpMeApp.model.Caa;
 import co.grandcircus.HelpMeApp.model.Hud;
 import co.grandcircus.HelpMeApp.model.HudService;
 import co.grandcircus.HelpMeApp.model.Org;
-import co.grandcircus.HelpMeApp.model.User;
 import co.grandcircus.HelpMeApp.placedetails.DetailResult;
 import co.grandcircus.HelpMeApp.placedetails.PlaceDetailsResponse;
 import co.grandcircus.HelpMeApp.places.GoogleTextSearchResponse;
@@ -125,7 +124,6 @@ public class ApiService {
 					each.getFormattedAddress(), latitude, longitude);
 			org.setApiId(makeApiId("GOOGLE", org));
 			orgs.add(org);
-			System.out.println(org.getApiId());
 		}
 		return orgs;
 	}
@@ -183,12 +181,7 @@ public class ApiService {
 	}
 
 	private Org findGoogleByApiId(String apiId) {
-		System.out.println(apiId);
 		String id[] = apiId.split(":::");
-		for (String each : id) {
-			System.out.println(each);
-		}
-
 		Org foundOrg = getPlaceDetails(getDetailsUrl(id[2]));
 
 		return foundOrg;
@@ -198,7 +191,6 @@ public class ApiService {
 		String fields = "formatted_address,icon,name,permanently_closed,place_id,formatted_phone_number,photos,geometry,website,rating";
 		String url = "https://maps.googleapis.com/maps/api/place/details/json?placeid=" + placeId + "&fields=" + fields
 				+ "&key=" + geoKey;
-		System.out.println(url);
 		return url;
 	}
 
@@ -218,10 +210,6 @@ public class ApiService {
 		return parsed;
 	}
 
-	private Long parseToLongWrapper(String string) {
-		Long parsed = Long.parseLong(string);
-		return parsed;
-	}
 
 	private String hudNameSearch(String orgName) {
 		String url = "https://data.hud.gov/Housing_Counselor/search?AgencyName=" + orgName
@@ -235,17 +223,12 @@ public class ApiService {
 		return url;
 	}
 
-	private String caaFindInRadius(Double latitude, Double longitude, int maxResults, int searchRadius) {
-		String url = "https://communityactionpartnership.com/wp-admin/admin-ajax.php?action=store_search&lat="
-				+ latitude + "&lng=" + longitude + "&max_results=" + maxResults + "&search_radius=" + searchRadius;
-		return url;
-	}
+//	private String caaFindInRadius(Double latitude, Double longitude, int maxResults, int searchRadius) {
+//		String url = "https://communityactionpartnership.com/wp-admin/admin-ajax.php?action=store_search&lat="
+//				+ latitude + "&lng=" + longitude + "&max_results=" + maxResults + "&search_radius=" + searchRadius;
+//		return url;
+//	}
 
-	private String buildAddress(User user) {
-		String address = user.getAddress() + "," + user.getCity() + "," + "MI";
-		System.out.println(address);
-		return address;
-	}
 
 	private String buildLocation(Double latitude, Double longitude) {
 		String location = Double.toString(latitude) + "," + Double.toString(longitude);
