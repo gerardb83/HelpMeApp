@@ -25,18 +25,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import co.grandcircus.HelpMeApp.Dao.MessageDao;
 import co.grandcircus.HelpMeApp.Dao.OrgDao;
-import co.grandcircus.HelpMeApp.Dao.OrgSelectionDao;
 import co.grandcircus.HelpMeApp.Dao.UserDao;
-import co.grandcircus.HelpMeApp.geocoding.GeocodingService;
 import co.grandcircus.HelpMeApp.google.GoogleService;
 import co.grandcircus.HelpMeApp.model.AutoEmail;
 import co.grandcircus.HelpMeApp.model.HelpList;
 import co.grandcircus.HelpMeApp.model.Message;
 import co.grandcircus.HelpMeApp.model.Org;
 import co.grandcircus.HelpMeApp.model.User;
-import co.grandcircus.HelpMeApp.placedetails.PlacesDetailsService;
-import co.grandcircus.HelpMeApp.places.GooglePlacesService;
-import co.grandcircus.HelpMeApp.places.Result;
 
 @Controller
 public class HelpMeAppController {
