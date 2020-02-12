@@ -110,13 +110,11 @@ public class HelpList {
 		Set<String> allKeyWords = new HashSet<>();
 		for (OrgSelection each : selectDao.findAll()) {
 			for (int i = 0, j = 4; j < each.getName().length() - 1; i += 1, j += 4) {
-				System.out.println("ORG: " + org.getName() + " matching to: " + each.getName());
 				if (org.getName().toLowerCase().contains(each.getName().toLowerCase().substring(i, j))) {
 					allKeyWords.add(each.getKeyWords());
 				}
 			}
 		}
-		System.out.println("Keywords all: " + allKeyWords);
 		return allKeyWords;
 	}
 
@@ -158,7 +156,6 @@ public class HelpList {
 	}
 
 	public String getHudUrl(String city) {
-		System.out.println("hud city: " + city);
 		String url = "https://data.hud.gov/Housing_Counselor/search?AgencyName=&City=" + city + "&State=" + "mi"
 				+ "&RowLimit=&Services=&Languages=";
 		return url;

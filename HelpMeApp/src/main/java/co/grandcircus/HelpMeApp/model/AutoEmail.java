@@ -2,7 +2,6 @@ package co.grandcircus.HelpMeApp.model;
 
 import java.io.IOException;
 import java.time.LocalDateTime;
-import java.time.temporal.ChronoUnit;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -20,7 +19,6 @@ import com.sendgrid.Request;
 import com.sendgrid.Response;
 import com.sendgrid.SendGrid;
 
-import co.grandcircus.HelpMeApp.ApiService;
 import co.grandcircus.HelpMeApp.Dao.MessageDao;
 import co.grandcircus.HelpMeApp.Dao.OrgDao;
 
@@ -33,7 +31,6 @@ public class AutoEmail {
 	private String EMAIL_ADDRESS;
 	@Value("${TEMPLATE_ID}")
 	private String TEMPLATE_ID;
-
 	@Value("${HOST}")
 	private String host;
 
@@ -41,8 +38,6 @@ public class AutoEmail {
 	private MessageDao messageDao;
 	@Autowired
 	private OrgDao orgDao;
-	@Autowired
-	private ApiService apiService;
 
 	public void sendMailFromUserToOrg(User user, Org org, String userContent) throws Exception {
 
@@ -178,9 +173,6 @@ public class AutoEmail {
 		String issue = lastMessage.getIssue();
 		return issue;
 	}
-
-
-
 
 	/* This method creates and returns a UUID if an org does not have one */
 	public String generateSecretKey(Org org) {

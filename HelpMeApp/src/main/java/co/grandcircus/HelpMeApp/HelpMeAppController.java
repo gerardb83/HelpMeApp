@@ -49,8 +49,6 @@ public class HelpMeAppController {
 	@Autowired
 	private UserDao userDao;
 	@Autowired
-	private OrgSelectionDao selectDao;
-	@Autowired
 	private OrgDao orgDao;
 	@Autowired
 	private ApiService apiService;
@@ -60,12 +58,6 @@ public class HelpMeAppController {
 	private GoogleService googleService;
 	@Autowired
 	private HelpList helpList;
-	@Autowired
-	private GeocodingService geocodingService;
-	@Autowired
-	private GooglePlacesService googlePlacesService;
-	@Autowired
-	private PlacesDetailsService placesDetailsService;
 	@Value("${Geocoding.API_KEY}")
 	private String geoKey;
 
@@ -138,8 +130,7 @@ public class HelpMeAppController {
 
 		ModelAndView mv = new ModelAndView("helplist");
 		List<Org> orgs = helpList.getControllerOrgList(service, orgSelection, city, user);
-		for (Org each : orgs) {
-		}
+		
 		mv.addObject("selectOrgs", orgs);
 		mv.addObject("selection", service);
 		mv.addObject("state", state);
@@ -266,59 +257,5 @@ public class HelpMeAppController {
 		return mv;
 
 	}
-
-//	@RequestMapping("/geocode")
-//	public ModelAndView showOnMap() {
-//		Double latitude = geocodingService.getLatitudeCoordinate("1600", "Amphitheatre Parkway", "Mountain View", "CA");
-//		Double longitude = geocodingService.getLongitudeCoordinate("1600", "Amphitheatre Parkway", "Mountain View",
-//				"CA");
-//		Double[] coordinates = new Double[] { latitude, longitude };
-//		return new ModelAndView("show-geocode", "coordinates", coordinates);
-//	}
-//
-//	@RequestMapping("/reverse-geocode")
-//	public ModelAndView getHumanReadableAddress() {
-//		String address = geocodingService.getRevereseGeocoding(40.714224, -73.961452);
-//		return new ModelAndView("show-reversegeocode", "address", address);
-//	}
-//
-//	@RequestMapping("/places-text-search")
-//	public ModelAndView SearchForPlaces() {
-//		return new ModelAndView("text-search-form");
-//	}
-//
-//	@PostMapping("/places-text-search")
-//	public ModelAndView displaySearchResults(@RequestParam(value = "searchText", required = true) String searchText,
-//			@RequestParam(value = "latitude", required = false) Double latitude,
-//			@RequestParam(value = "longitude", required = false) Double longitude) {
-//		Result[] places;
-//		if (latitude != null && longitude != null) {
-//			places = googlePlacesService.getListOfPlacesWithAddressBiased(searchText, latitude, longitude);
-//		} else {
-//			places = googlePlacesService.getListOfPlacesWithoutAddressBiased(searchText);
-//		}
-//		return new ModelAndView("display-places-of-interest", "places", places);
-//	}
-
-	/*
-	 * @RequestMapping("/display-place-details") public ModelAndView
-	 * displayPlaceDetails() { Result[] placeDetails =
-	 * placesDetailsService.getPlaceDetails(placeId); return new ModelAndView("",
-	 * "placeDetails", placeDetails); }
-	 */
-
-//	@RequestMapping("/display-place-details")
-//	public ModelAndView displayPlaceDetails() {
-//		DetailResult[] placeDetails = placesDetailsService.getPlaceDetails("ChIJi9Uq7qvqIogRUUxE3sZSlOU");
-//		System.out.println(placeDetails.toString());
-//		return new ModelAndView("", "placeDetails", placeDetails);
-//	}
-
-//	private String getPlacesUrl(String searchText, Double latitude, Double longitude) {
-//		String fields = "formatted_address,name,place_id,rating,user_ratings_total";
-//		String url = "https://maps.googleapis.com/maps/api/place/findplacefromtext/json?input=" + searchText + "&inputtype=textquery&fields="
-//				+ fields + "&locationbias=circle:4000@" + buildLocation(latitude, longitude) + "&key=" + geoKey;
-//		return url;
-//	}
 	
 }

@@ -1,16 +1,12 @@
 package co.grandcircus.HelpMeApp.model;
 
 import java.io.Serializable;
-import java.util.Arrays;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
-
-import co.grandcircus.HelpMeApp.placedetails.BusinessHours;
-import co.grandcircus.HelpMeApp.placedetails.Photo;
 
 @Entity
 @Table(name = "orgs")

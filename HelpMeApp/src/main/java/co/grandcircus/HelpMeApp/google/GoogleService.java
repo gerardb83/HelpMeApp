@@ -28,7 +28,6 @@ public class GoogleService {
 	 * provided code.
 	 */
 	public String getGoogleAccessToken(String code) {
-		// We'll talk more about rest template in the coming days.
 		Map<String, String> params = new HashMap<>();
 		params.put("code", code);
 		params.put("client_id", "855747263310-23km4ggb7ckj25amm0hvpaedag4t6ur6.apps.googleusercontent.com");
@@ -46,10 +45,8 @@ public class GoogleService {
 	 * details.
 	 */
 	public User getUserFromGoogleApi(String accessToken) {
-		// We'll talk more about rest template in the coming days.
 		RestTemplate rest = new RestTemplate();
 		String uri = "https://www.googleapis.com/oauth2/v1/userinfo?access_token=" + accessToken;
-		System.out.println(uri);
 		GoogleUser response = rest.getForObject(uri, GoogleUser.class);
 		User user = new User();
 		response.copyToUser(user);
